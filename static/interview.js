@@ -31,22 +31,27 @@ function setup() {
     image(bg_image, .2*windowWidth, .2*windowHeight, .5*windowWidth, .8*windowHeight);
     textStyle(BOLD);
     textSize(42);
-    text(user_data.name,.25*windowWidth, .25*windowHeight );
+    text(user_data.name,.25*windowWidth, .27*windowHeight );
     textStyle(ITALIC);
     textSize(36);
-    text("Concerns:", .25*windowWidth, .33*windowHeight);
-    textSize(30);
-    textStyle(NORMAL);
-    for (var i = 0; i < user_data.cons.length; i++){
-        text("..." + user_data.cons[i], windowWidth*.3, windowHeight*.37 + (windowHeight*.05*i));
-    }
-
-    textSize(32);
-    text("Positive:", .25*windowWidth, .6*windowHeight);
+    text("Concerns:", .25*windowWidth, .35*windowHeight);
     textSize(26);
-    for (var i = 0; i < user_data.pros.length; i++){
-        text("..." + user_data.pros[i], windowWidth*.3, windowHeight*.65 + (windowHeight*.05*i));
+    textStyle(NORMAL);
+	var consList = "";
+    for (var i = 0; i < user_data.cons.length; i++){
+        //text("..." + user_data.cons[i], windowWidth*.3, windowHeight*.37 + (windowHeight*.05*i));
+		consList = consList + "..." + user_data.cons[i] + "\n";
     }
+	text(consList, windowWidth*.3, windowHeight*.37, windowWidth*.5, windowHeight - windowHeight*.37)
+	
+    textSize(32);
+    text("Positive:", .25*windowWidth, .65*windowHeight);
+    textSize(26);
+	var prosList = "";
+    for (var i = 0; i < user_data.pros.length; i++){
+		prosList = prosList + "..." + user_data.pros[i] + "\n";
+    }
+	text(prosList, windowWidth*.3, windowHeight*.67, windowWidth*.5, windowHeight - windowHeight*.65)
 }
 
 function draw() {
