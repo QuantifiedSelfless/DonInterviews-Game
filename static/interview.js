@@ -16,7 +16,7 @@ function preload() {
                 "said they love technology",
                 "shared an article about career achievement"]
     };
-    handy = loadFont('static/BallpointprintRegular.ttf');
+    handy = loadFont('static/type2.ttf');
 
 }
 
@@ -24,10 +24,7 @@ function setup() {
     var myCanvas = createCanvas(windowWidth, windowHeight);
     myCanvas.parent('processing');
     textFont(handy);
-}
-
-function draw() {
-    background('#333030');
+	background('#333030');
 
     image(imgDC, .02*windowWidth, .05*windowHeight, windowWidth*.1, windowHeight*.2);
     image(folder, .15*windowWidth, .01*windowHeight);
@@ -51,3 +48,6 @@ function draw() {
         text("..." + user_data.pros[i], windowWidth*.3, windowHeight*.65 + (windowHeight*.05*i));
     }
 }
+
+function draw() {
+}    
