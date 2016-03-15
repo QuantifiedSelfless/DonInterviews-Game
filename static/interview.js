@@ -2,7 +2,8 @@ var user_data;
 
 function preload() {
     imgDC = loadImage('static/Yellow-Tree-logo.png');
-    bg_image = loadImage('static/paper2.jpg')
+    bg_image = loadImage('static/paper2.jpg');
+    folder = loadImage('static/manilla.png')
     //Eventually this should use the URL param to make an AJAX call
     user_data = {
         name: "Duggy McSwisher",
@@ -26,24 +27,27 @@ function setup() {
 }
 
 function draw() {
-    background(bg_image);
-    image(imgDC, .1*windowWidth, .05*windowHeight, windowWidth*.1, windowHeight*.2);
+    background('#333030');
+
+    image(imgDC, .02*windowWidth, .05*windowHeight, windowWidth*.1, windowHeight*.2);
+    image(folder, .15*windowWidth, .01*windowHeight);
+    image(bg_image, .2*windowWidth, .2*windowHeight, .5*windowWidth, .8*windowHeight);
     textStyle(BOLD);
     textSize(42);
-    text(user_data.name,.3*windowWidth, .15*windowHeight );
+    text(user_data.name,.25*windowWidth, .25*windowHeight );
     textStyle(ITALIC);
     textSize(36);
-    text("Concerns:", .3*windowWidth, .23*windowHeight);
+    text("Concerns:", .25*windowWidth, .33*windowHeight);
     textSize(30);
     textStyle(NORMAL);
     for (var i = 0; i < user_data.cons.length; i++){
-        text("..." + user_data.cons[i], windowWidth*.4, windowHeight*.27 + (windowHeight*.05*i));
+        text("..." + user_data.cons[i], windowWidth*.3, windowHeight*.37 + (windowHeight*.05*i));
     }
 
     textSize(32);
-    text("Positive:", .3*windowWidth, .5*windowHeight);
+    text("Positive:", .25*windowWidth, .6*windowHeight);
     textSize(26);
     for (var i = 0; i < user_data.pros.length; i++){
-        text("..." + user_data.pros[i], windowWidth*.4, windowHeight*.55 + (windowHeight*.05*i));
+        text("..." + user_data.pros[i], windowWidth*.3, windowHeight*.65 + (windowHeight*.05*i));
     }
 }
