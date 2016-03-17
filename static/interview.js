@@ -1,5 +1,4 @@
 var user_data;
-
 function preload() {
     //imgDC = loadImage('static/Yellow-Tree-logo.png');
     bg_image = loadImage('static/paper2.jpg');
