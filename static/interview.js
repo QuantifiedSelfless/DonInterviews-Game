@@ -1,9 +1,11 @@
 var user_data;
 
 function preload() {
-    imgDC = loadImage('static/Yellow-Tree-logo.png');
+    //imgDC = loadImage('static/Yellow-Tree-logo.png');
     bg_image = loadImage('static/paper2.jpg');
-    folder = loadImage('static/manilla.png')
+    folder = loadImage('static/manilla.png');
+    card = loadImage('static/timecard.png');
+    coffee_notes = loadImage('static/cofnotes.png');
     //Eventually this should use the URL param to make an AJAX call
     user_data = {
         name: "Duggy McSwisher",
@@ -24,11 +26,13 @@ function setup() {
     var myCanvas = createCanvas(windowWidth, windowHeight);
     myCanvas.parent('processing');
     textFont(handy);
-	background('#333030');
-
-    image(imgDC, .02*windowWidth, .05*windowHeight, windowWidth*.1, windowHeight*.2);
+	fill('rgba(0,0,0,0.75)');
+	noStroke();
+    //image(imgDC, .02*windowWidth, .05*windowHeight, windowWidth*.1, windowHeight*.2);
     image(folder, .15*windowWidth, .01*windowHeight);
     image(bg_image, .2*windowWidth, .2*windowHeight, .5*windowWidth, .8*windowHeight);
+    image(card, .02*windowWidth, .25*windowHeight);
+    image(coffee_notes, .6*windowWidth, .09*windowHeight);
     textStyle(BOLD);
     textSize(42);
     text(user_data.name,.25*windowWidth, .27*windowHeight );
