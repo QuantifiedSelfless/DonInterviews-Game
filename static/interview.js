@@ -28,11 +28,14 @@ function setup() {
     textFont(handy);
 	fill('rgba(0,0,0,0.75)');
 	noStroke();
-    //image(imgDC, .02*windowWidth, .05*windowHeight, windowWidth*.1, windowHeight*.2);
     image(folder, .15*windowWidth, .01*windowHeight);
     image(bg_image, .2*windowWidth, .2*windowHeight, .5*windowWidth, .8*windowHeight);
-    image(card, .02*windowWidth, .25*windowHeight);
-    image(coffee_notes, .6*windowWidth, .09*windowHeight);
+	cardWidth = windowWidth/4.6;
+	cardHeight = card.height/(card.width/(cardWidth));
+	image(card, .02*windowWidth, .25*windowHeight, cardWidth, cardHeight);
+	coffeeWidth = windowWidth/4.85;
+	coffeeHeight = coffee_notes.height/(coffee_notes.width/(coffeeWidth));
+    image(coffee_notes, .7*windowWidth, .09*windowHeight, coffeeWidth, coffeeHeight);
     textStyle(BOLD);
     textSize(42);
     text(user_data.name,.25*windowWidth, .27*windowHeight );
