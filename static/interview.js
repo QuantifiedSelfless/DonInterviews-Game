@@ -1,4 +1,8 @@
 var user_data;
+var socket = io.connect('http://localhost:3000')
+socket.on('rfid', function(data){
+    setTimeout(function() { window.location = "http://localhost:8000"}, 2000)
+})
 function preload() {
     bg_image = loadImage('static/paper2.jpg');
     folder = loadImage('static/manilla.png');
