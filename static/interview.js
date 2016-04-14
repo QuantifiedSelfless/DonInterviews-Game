@@ -11,7 +11,7 @@ function preload() {
     coffee_notes = loadImage('static/cofnotes.png');
     //Eventually this should use the URL param to make an AJAX call
     // params = getURLParams();
-    var baseurl = 'http://quantifiedselfbackend.local:6060/interview_procesor/interview?';
+    var baseurl = 'http://quantifiedselfbackend.local:6060/interview_processor/interview?';
     $.ajax({
             url: baseurl + "userid=b9bef55d-e1c2-418b-979d-62762902ee38",
             success: function(data) {
@@ -56,12 +56,13 @@ function setup() {
 	coffeeWidth = windowWidth/4.85;
 	coffeeHeight = coffee_notes.height/(coffee_notes.width/(coffeeWidth));
     image(coffee_notes, .7*windowWidth, .09*windowHeight, coffeeWidth, coffeeHeight);
-    textStyle(BOLD);
-    textSize(42);
-    text(user_data.name,.25*windowWidth, .27*windowHeight );
-    textStyle(ITALIC);
-    textSize(32);
     if (ready == true) {
+        textStyle(BOLD);
+        textSize(42);
+        text(user_data.name,.25*windowWidth, .27*windowHeight );
+        textStyle(ITALIC);
+        textSize(32);
+        
         text("Positive:", .25*windowWidth, .35*windowHeight);
         textSize(26);
         textStyle(NORMAL);
