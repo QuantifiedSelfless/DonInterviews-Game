@@ -4,6 +4,35 @@ var socket = io.connect('http://localhost:3000')
 socket.on('rfid', function(data){
     setTimeout(function() { window.location = "http://localhost:8000"}, 2000)
 })
+
+function make_AJAX_call(data, tryCount, retryLimit){
+    $.ajax({
+        type: 'GET',
+        url: "http://quantifiedselfbackend.local:6060/interview_processor/interview?",
+        data: data,
+        success: function(data) {
+            console.log(data.data);
+            user_data = data.data;
+            ready = true;
+            setup();
+        },
+        error: function(resp) {
+            console.log("Error: Ajax call failed");
+            tryCount++;
+            if (tryCount >= retryLimit){
+                window.location = "http://localhost:8000?error=try_again";
+            }
+            else { //Try again with exponential backoff.
+                setTimeout(function(){ 
+                    return make_AJAX_call(data, tryCount, retryLimit);
+                }, Math.pow(2, tryCount) * 1000);
+                return false;
+            }
+        }
+    });
+    return false;
+}
+
 function preload() {
     bg_image = loadImage('static/paper2.jpg');
     folder = loadImage('static/manilla.png');
@@ -12,21 +41,24 @@ function preload() {
     //Eventually this should use the URL param to make an AJAX call
     // params = getURLParams();
     var baseurl = 'http://quantifiedselfbackend.local:6060/interview_processor/interview?';
-    $.ajax({
-            url: baseurl + "userid=b9bef55d-e1c2-418b-979d-62762902ee38",
-            success: function(data) {
-                console.log(data.data);
-                user_data = data.data;
-                ready = true;
-                setup();
-            },
-            error: function(resp) {
-                console.log("didn't work");
-                setTimeout( function () { 
-                    window.location.reload();
-                }, 5000);
-        }
-    });
+    make_AJAX_call(getURLParams(), 0, 3);
+    // $.ajax({
+    //         type: 'GET',
+    //         url: baseurl + "userid=b9bef55d-e1c2-418b-979d-62762902ee38",
+    //         data: getURLParams(),
+    //         success: function(data) {
+    //             console.log(data.data);
+    //             user_data = data.data;
+    //             ready = true;
+    //             setup();
+    //         },
+    //         error: function(resp) {
+    //             console.log("didn't work");
+    //             setTimeout( function () { 
+    //                 window.location.reload();
+    //             }, 5000);
+    //     }
+    // });
     // user_data = {
     //     name: "Duggy McSwisher Johnson",
     //     cons: ["said they disliked work 87 times and one time they went to a store and they stole a whole bunch of stuff!", 
